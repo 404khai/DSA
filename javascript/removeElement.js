@@ -46,17 +46,22 @@
 // 0 <= val <= 100
 
 
-function removeElement(nums, val) {    
-    let valIndex = nums.indexOf(val)
+function removeElement(nums, val) {
+    let k = 0; // Pointer for the position of non-val elements
 
-    for(i=0; i<nums.length; i++){
-        if (nums.includes(val)){
-            nums.splice(valIndex,val)
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== val) {
+            nums[k] = nums[i];
+            k++;
         }
     }
 
-    console.log(nums);
+    return k;
 };
 
-// removeElement([3,2,3,2,8], 3)
-removeElement([0,1,2,2,3,0,4,2], 2)
+// Test case
+let nums = [0,1,2,2,3,0,4,2];
+let val = 2;
+let k = removeElement(nums, val);
+console.log("k:", k);
+console.log("nums:", nums.slice(0, k));
